@@ -19,23 +19,15 @@ package kafka.log
 import java.nio.ByteBuffer
 
 import kafka.api.{ApiVersion, KAFKA_2_1_IV0}
-//<<<<<<< HEAD
-//import kafka.common.LongRef
-//import kafka.utils.Logging
-//import org.apache.kafka.common.errors.{InvalidTimestampException, UnsupportedCompressionTypeException, UnsupportedForMessageFormatException}
-//import org.apache.kafka.common.record.{AbstractRecords, BufferSupplier, CompressionConfig, CompressionType, InvalidRecordException, MemoryRecords, Record, RecordBatch, RecordConversionStats, TimestampType}
-//=======
 import kafka.common.{LongRef, RecordValidationException}
-import kafka.message.{CompressionCodec, NoCompressionCodec, ZStdCompressionCodec}
 import kafka.server.BrokerTopicStats
 import kafka.utils.Logging
 import org.apache.kafka.common.errors.{CorruptRecordException, InvalidTimestampException, UnsupportedCompressionTypeException, UnsupportedForMessageFormatException}
-import org.apache.kafka.common.record.{AbstractRecords, BufferSupplier, CompressionConfig, BufferSupplier, CompressionType, MemoryRecords, Record, RecordBatch, RecordConversionStats, TimestampType}
+import org.apache.kafka.common.record.{AbstractRecords, BufferSupplier, CompressionConfig, CompressionType, MemoryRecords, Record, RecordBatch, RecordConversionStats, TimestampType}
 import org.apache.kafka.common.InvalidRecordException
 import org.apache.kafka.common.TopicPartition
 import org.apache.kafka.common.protocol.Errors
 import org.apache.kafka.common.requests.ProduceResponse.RecordError
-//>>>>>>> trunk
 import org.apache.kafka.common.utils.Time
 
 import scala.collection.{Seq, mutable}

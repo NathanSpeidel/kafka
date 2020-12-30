@@ -1,3 +1,32 @@
+
+.
+.
+.
+.
+.
+.
+.
+
+This is my dev version of kafka that I just used for testing zstd compression levels - it is nowhere close to
+production ready. It is the dongjinleekr:feature/KAFKA-7632 fork of Kafka merged with the current (12/30/20)
+trunk of apache:trunk. Basically a current version of [this PR](https://github.com/apache/kafka/pull/5927/files#)
+which adds configurability of zstd compression levels.
+
+Compile like this:
+```
+./gradlew jar -x test -x :core:compileTestScala -x :jmh-benchmarks:compileJava -x :connect:runtime:compileTestJava
+```
+
+.
+.
+.
+.
+.
+.
+.
+
+
+
 Apache Kafka
 =================
 See our [web site](https://kafka.apache.org) for details on the project.
