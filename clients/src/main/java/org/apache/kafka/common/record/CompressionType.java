@@ -137,7 +137,9 @@ public enum CompressionType {
         @Override
         public InputStream wrapForInput(ByteBuffer buffer, byte messageVersion, BufferSupplier decompressionBufferSupplier) {
             try {
-                return (InputStream) ZstdConstructors.INPUT.invoke(new ByteBufferInputStream(buffer));
+                // Set output buffer (uncompressed) to 16 KB (none by default) to ensure reasonable performance
+                // in cases where the caller reads a small number of bytes (potentially a single byte)
+                return new BufferedInputStream((InputStream) ZstdConstructors.INPUT.invoke(new ByteBufferInputStream(buffer)), 16 * 1024);
             } catch (Throwable e) {
                 throw new KafkaException(e);
             }
