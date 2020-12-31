@@ -17,6 +17,11 @@ Compile like this:
 ./gradlew jar -x test -x :core:compileTestScala -x :jmh-benchmarks:compileJava -x :connect:runtime:compileTestJava
 ```
 
+Artifact will be here:
+```
+./clients/build/libs/kafka-clients-2.8.0-SNAPSHOT.jar
+```
+
 .
 .
 .

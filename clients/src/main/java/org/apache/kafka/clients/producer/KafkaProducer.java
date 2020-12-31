@@ -251,6 +251,7 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
     private final Sender sender;
     private final Thread ioThread;
     private final CompressionType compressionType;
+    private final int compressionLevel;
     private final Sensor errors;
     private final Time time;
     private final Serializer<K> keySerializer;
@@ -392,7 +393,17 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
                     valueSerializer, interceptorList, reporters);
             this.maxRequestSize = config.getInt(ProducerConfig.MAX_REQUEST_SIZE_CONFIG);
             this.totalMemorySize = config.getLong(ProducerConfig.BUFFER_MEMORY_CONFIG);
+
+
+
+
             this.compressionType = CompressionType.forName(config.getString(ProducerConfig.COMPRESSION_TYPE_CONFIG));
+            this.compressionLevel = config.getInt(ProducerConfig.COMPRESSION_LEVEL_CONFIG);
+            log.info("Using compression level: " + compressionLevel);
+
+
+
+
 
             this.maxBlockTimeMs = config.getLong(ProducerConfig.MAX_BLOCK_MS_CONFIG);
             int deliveryTimeoutMs = configureDeliveryTimeout(config, log);
@@ -401,7 +412,7 @@ public class KafkaProducer<K, V> implements Producer<K, V> {
             this.transactionManager = configureTransactionState(config, logContext);
             this.accumulator = new RecordAccumulator(logContext,
                     config.getInt(ProducerConfig.BATCH_SIZE_CONFIG),
-                    CompressionConfig.of(this.compressionType),
+                    CompressionConfig.of(this.compressionType, this.compressionLevel),
                     lingerMs(config),
                     retryBackoffMs,
                     deliveryTimeoutMs,
