@@ -12,6 +12,11 @@ production ready. It is the dongjinleekr:feature/KAFKA-7632 fork of Kafka merged
 trunk of apache:trunk. Basically a current version of [this PR](https://github.com/apache/kafka/pull/5927/files#)
 which adds configurability of zstd compression levels.
 
+You can set the compression level with the setting `compression.level` (this is different from the new setting
+discussed in the [kip](https://cwiki.apache.org/confluence/display/KAFKA/KIP-390%3A+Allow+fine-grained+configuration+for+compression#KIP390:Allowfinegrainedconfigurationforcompression-Compressionlevel)
+but this is just for some CPU usage testing, so it's good enough)
+
+
 Compile like this:
 ```
 ./gradlew jar -x test -x :core:compileTestScala -x :jmh-benchmarks:compileJava -x :connect:runtime:compileTestJava
