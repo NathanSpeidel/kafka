@@ -27,6 +27,13 @@ Artifact will be here:
 ./clients/build/libs/kafka-clients-2.8.0-SNAPSHOT.jar
 ```
 
+It should be noted that this new implementation uses the 
+["highCompressor"](https://github.com/lz4/lz4-java/blob/812d2e27489995645d878c9fb2ddcb83e54cc7d2/src/java/net/jpountz/lz4/LZ4Factory.java#L240)
+for lz4 compression instead of the
+["fastCompressor"](https://github.com/lz4/lz4-java/blob/812d2e27489995645d878c9fb2ddcb83e54cc7d2/src/java/net/jpountz/lz4/LZ4Factory.java#L229)
+which is used in kafka-client 2.6.  Initial testing indicated that the throughput for the highCompressor is
+substantially inferior to the throughput for the fastCompressor, even if the highCompressor is tuned to be maximally
+fast.
 .
 .
 .
